@@ -1,0 +1,5 @@
+01. Carpeta de trabajo
+02. npm init -y
+03. npm install m1 m2 nM
+04. estructuras de directorios(public , src)
+05. archivos del proyecto: .env - .gitignore - README.md
