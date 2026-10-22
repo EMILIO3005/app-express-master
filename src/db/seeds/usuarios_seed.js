@@ -8,6 +8,6 @@ exports.seed = async function(knex) {
   //await knex('table_name').del()
   await knex('usuarios').insert([
     {id: 1, idpersona:1, nombre_usuario: 'hugo', clave_acceso:bcrypt.hashSync('hugo123', 10), nivel_acceso:'ADMIN', estado:true},
-    {id: 2, idpersona:2, nombre_usuario: 'paco', clave_acceso:bcrypt.hashSync('paco123', 10), nivel_acceso:'INVITADO', estado:true}
+    {id: 2, idpersona:2, nombre_usuario: 'paco', clave_acceso:bcrypt.hashSync('paco123', 10), nivel_acceso:'USUARIO', estado:true}
   ]);
 };
