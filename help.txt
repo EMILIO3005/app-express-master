@@ -3,3 +3,12 @@
 03. npm install m1 m2 nM
 04. estructuras de directorios(public , src)
 05. archivos del proyecto: .env - .gitignore - README.md
+06.npx knex init (Configuracion manual)
+07.creamos el/los archivos de migracion 
+08.
+09.
+10.
+11.
+12.
+13.
+14.
