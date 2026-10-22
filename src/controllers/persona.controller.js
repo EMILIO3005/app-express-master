@@ -65,7 +65,7 @@ exports.update = async(req,res) =>{
   res.json({ message: "Persona actualizada"})
 }
 exports.remove = async(req,res) =>{
-  const num =await db("personas")
+  const num = await db("personas")
     .where({ id: req.params.id})
     .del()
   if (!num) throw httpError(404, "Persona no encontrada")
