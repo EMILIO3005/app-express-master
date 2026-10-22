@@ -6,7 +6,7 @@ const db = require('../config/db')
 const { httpError, requireFields } = require('../utils')
 
 //Configuracion de cookies
-const cookiesOpts = {
+const cookieOpts = {
   httpOnly: true,
   sameSite: 'lax',
   secure: process.env.NODE_ENV === 'production'
@@ -55,4 +55,26 @@ exports.login = async (req, res) => {
   })
 
   res.cookie('token', token, cookiesOpts).json({message: 'Bienvenido'})
+}
+
+
+//Cierre de session 
+exports.logout = async(req, res) =>{
+  res.clearCookie('token', cookieOpts).json({ message: 'Session finalizada' })
+}
+
+
+//Funcion retorna la informacion completa del usuario
+//usuario > persona
+exports.me = async (req, res) =>{
+  //Objetivo es hacer una consulta multitabla para obtener los datos del usuario
+  const usuario = await db('usuarios as u')
+    .join('personas as p', 'p.id', 'u.idpersona')
+    .where('u.id', req.user.id)
+    .select('ud.id', 'u.nombre_usuario', 'u.nivel_acceso', 'p.nombres', 'p.apellidos')
+    .first()
+
+  if (!usuario) throw httpError(401,'Usuario no encontrado')
+   //si existe envio los datos del usuario
+  res.json(usuario)
 }
