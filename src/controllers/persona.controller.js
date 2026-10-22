@@ -31,6 +31,8 @@ exports.get = async(req,res) =>{
   if(!row) throw httpError(404, 'Persona no encontrada')
   res.json(row)
 }
+
+
 exports.create = async(req,res) =>{
   requireFields(req.body, ["apellidos", "nombres", "email"])
 
