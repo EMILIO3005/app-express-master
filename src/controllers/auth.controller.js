@@ -54,7 +54,7 @@ exports.login = async (req, res) => {
     expiresIn: process.env.JWT_EXPIRES_IN || '8h'
   })
 
-  res.cookie('token', token, cookiesOpts).json({message: 'Bienvenido'})
+  res.cookie('token', token, cookieOpts).json({message: 'Bienvenido'})
 }
 
 

@@ -49,5 +49,5 @@ exports.requireLevel = (...niveles) => (req, res, next) => {
   niveles.includes(req.user.nivel_acceso) ? 
   next() : 
   res.status(403)
-  .json({ message: 'No tienes permiso para esta accion'})
+  .json({ message: 'No tienes permiso para esta accion' })
 }

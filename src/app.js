@@ -11,7 +11,7 @@ const routes= require('./routers')
 
 
 const { apiLimiter } = require('./middlewares/rateLimit')
-const { notFound, errorHandler } = require('./middlewares/errorHanled')
+const { notFound, errorHandler } = require('./middlewares/errorHandler')
 
 
 const app = express()

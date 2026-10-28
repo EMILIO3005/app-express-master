@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const c = require('../controllers/auth.controller')//Controlador controla permisos
-const {verifyToken} = require('../middlewares')
+const {verifyToken} = require('../middlewares/auth')
 const { loginLimiter } = require('../middlewares/rateLimit')
 
 

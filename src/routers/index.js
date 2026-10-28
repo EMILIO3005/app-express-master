@@ -1,6 +1,6 @@
 const router = require('express').Router()
 
-const { use } = require('react')
+//const { use } = require('react')
 //JWT = limitar el uso de las rutas
 const {verifyToken, requireLevel} = require('../middlewares/auth')
 
@@ -9,6 +9,6 @@ const {verifyToken, requireLevel} = require('../middlewares/auth')
 //Version 1: login (publico)
 router.use('/auth', require('./auth.routes'))
 router.use('/personas', verifyToken, require('./persona.routes'))
-router,use('/usuarios', verifyToken, requireLevel('ADMIN'), require('./usuario.routes'))
+router.use('/usuarios', verifyToken, requireLevel('ADMIN'), require('./usuario.routes'))
 
 module.exports = router
