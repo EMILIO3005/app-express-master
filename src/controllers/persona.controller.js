@@ -19,6 +19,9 @@ const pick = (body) =>{
   )
 }
 
+//Lista completa de personas
+//SELECT * FROM Tablas
+//GET BUSQUEDA  + WHERE condicion
 exports.list = async(req,res) =>{
   res.json(
     await db('personas')
@@ -26,13 +29,15 @@ exports.list = async(req,res) =>{
     .orderBy("apellidos")
   )
 }
+
+//Buscar
 exports.get = async(req,res) =>{
   const row = await db("personas").where({ id: req.params.id}).first()
   if(!row) throw httpError(404, 'Persona no encontrada')
   res.json(row)
 }
 
-
+//Registrar
 exports.create = async(req,res) =>{
   requireFields(req.body, ["apellidos", "nombres", "email"])
 
@@ -49,6 +54,8 @@ exports.create = async(req,res) =>{
   //Server code 201 - save OK
   res.status(201).json({ id, message: 'personas registradas'})
 }
+
+//Actualizar
 exports.update = async(req,res) =>{
   requireFields(req.body, ["apellidos", "nombres", "email"])
 
@@ -66,6 +73,8 @@ exports.update = async(req,res) =>{
 
   res.json({ message: "Persona actualizada"})
 }
+
+//Eliminar
 exports.remove = async(req,res) =>{
   const num = await db("personas")
     .where({ id: req.params.id})

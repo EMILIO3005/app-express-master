@@ -8,7 +8,7 @@
 08.crea tu BD en Mysql
 09.Ejecutar la migracion: npx knex migrate:latest
 10.Error migracion (deshacer): npx knex migrate:rollback
-11.
+11.Archivo semillas
 12.
 13.
 14.
