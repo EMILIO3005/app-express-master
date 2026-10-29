@@ -37,6 +37,8 @@ async function llamarApi(url, metodo, datos){
 
   return resultado
 }
+
+//Funcion de identificacion
 async function iniciar() {
   const yo = await llamarApi('/api/auth/me')
   document.getElementById('who').textContent = `${yo.nombres} ${yo.apellidos} (${yo.nivel_acceso})`
@@ -46,4 +48,11 @@ async function iniciar() {
 
 }
 
+async function cerrarSesion(){
+  await llamarApi('/api/auth/logout', 'POST')
+  window,location.href = '/login.html'
+}
+
+//Manejador de eventos
+document.getElementById("logout").addEventListener("click", cerrarSesion)
 iniciar()
