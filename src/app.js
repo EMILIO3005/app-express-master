@@ -27,7 +27,10 @@ app.use(helmet({
   contentSecurityPolicy:{
     useDefaults: true,
     directives:{
-      'style-src': ["'self'"],
+      'defaultSrc': ["'self'"],
+      'styleSrc': ["'self'", "https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/"],
+      'scriptSrc': ["'self'", "https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/"],
+      'connect-src': ["'self'", "https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/" ],
       'upgrade-insecure-request': isProd ? [] : null
     }
   }

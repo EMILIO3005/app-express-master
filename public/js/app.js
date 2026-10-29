@@ -126,8 +126,16 @@ async function cargarPersonas(){
 function abrirFormularioPersonas(persona){
   alert(`${persona.apellidos} ${persona.nombres}`)
 }
-function eliminarPersona(id){
-  alert(id)
+async function eliminarPersona(id){
+  if (!confirm("¿Eliminamos esta persona?")){
+    return;
+  }
+  try {
+    await llamarApi(`/api/personas/${id}`, 'DELETE')
+    await cargarPersonas()
+  } catch (e) {
+    alert(e.message)
+  }
 }
 
 //Manejador de eventos
