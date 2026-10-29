@@ -124,7 +124,25 @@ async function cargarPersonas(){
 }
 
 function abrirFormularioPersonas(persona){
-  alert(`${persona.apellidos} ${persona.nombres}`)
+  if (persona) {
+    idPersonaEditando = persona.id
+    document.querySelector('.dialog-title').textContent = 'Editar persona'
+
+
+    //Mostrar los datos del objeto en los controles del formulario
+    document.getElementById('apellidos').value = persona.apellidos
+    document.getElementById('nombres').value = persona.nombres
+    document.getElementById('telefono').value = persona.telefono
+    document.getElementById('email').value = persona.email
+    document.getElementById('direccion').value = persona.direccion
+  }else{
+    //Agregar nueva persona = null
+    idPersonaEditando = null
+    document.querySelector('.dialog-title').textContent = 'Nueva persona'
+    document.getElementById('formPersona').reset()
+  }
+
+  document.getElementById("dialogPersona").showModal()
 }
 async function eliminarPersona(id){
   if (!confirm("¿Eliminamos esta persona?")){
@@ -140,4 +158,5 @@ async function eliminarPersona(id){
 
 //Manejador de eventos
 document.getElementById("logout").addEventListener("click", cerrarSesion)
+document.getElementById("nuevaPersona").addEventListener("click", function () { abrirFormularioPersonas(null)})
 iniciar()
