@@ -6,20 +6,22 @@
   <title>Document</title>
 </head>
 <body>
-  <form action="">
+
+  <!-- atributo action identifica al archivo/proceso backend -->
+  <form action="" id="formLogin">
     <h1>Iniciar sesión</h1>
     <div>
-      <label for="">Usuario</label>
+      <label for="nombre_usuario">Usuario</label>
       <input type="text" id="nombre_usuario" name="nombre_usuario" required>
     </div>
     <div>
       <label for="clave_acceso">contraseña</label>
-      <input type="text" id="nombre_usuario" name="nombre_usuario" required>
+      <input type="text" id="clave_acceso" name="clave_acceso" required>
     </div>
-    <p>Alerta...</p>
+    <p id="mensaje">Alerta...</p>
     <button type="submit">Ingresar</button>
   </form>
 
-  <script src=""></script>
+  <script src="./js/login.js"></script>
 </body>
 </html>
