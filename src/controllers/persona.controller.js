@@ -49,8 +49,8 @@ exports.create = async(req,res) =>{
 
 
   //Insertar (validando que solo envias cadenas)
-  const [id] = await db("personas").insert(pick(req.body))
-
+  //const [id] = await db("personas").insert(pick(req.body))
+  const [id] = await db("personas").insert(req.body)
   //Server code 201 - save OK
   res.status(201).json({ id, message: 'personas registradas'})
 }
@@ -67,7 +67,7 @@ exports.update = async(req,res) =>{
 
   const num =await db("personas")
     .where({ id: req.params.id})
-    .update(pick(req.body))
+    .update(req.body)
 
   if (!num) throw httpError(404, "Persona no encontrada")
 

@@ -142,7 +142,35 @@ function abrirFormularioPersonas(persona){
     document.getElementById('formPersona').reset()
   }
 
+  //Abrimos el dialog 
   document.getElementById("dialogPersona").showModal()
+}
+async function guardarPersona(event){
+  event.preventDefault()
+
+  //Empaquetar los datos enviados
+  const datos = {
+    apellidos: document.getElementById('apellidos').value,
+    nombres: document.getElementById('nombres').value,
+    telefono: document.getElementById('telefono').value,
+    email: document.getElementById('email').value,
+    direccion: document.getElementById('direccion').value
+  }
+
+  try {
+    //¿Editar o registrar nuevo?
+    if (idPersonaEditando){
+      await llamarApi(`/api/personas/${idPersonaEditando}`, 'PUT', datos)
+    }else{
+      await llamarApi('/api/personas', 'POST', datos)
+    }
+
+    document.getElementById('dialogPersona').close()
+    await cargarPersonas() //Se renderiza el cuerpo de personas
+  } catch (e) {
+    //Notificar el error en el mismo formulario (evitar alertas)
+    document.getElementById('errorPersonas').textContent = e.message
+  }
 }
 async function eliminarPersona(id){
   if (!confirm("¿Eliminamos esta persona?")){
@@ -159,4 +187,5 @@ async function eliminarPersona(id){
 //Manejador de eventos
 document.getElementById("logout").addEventListener("click", cerrarSesion)
 document.getElementById("nuevaPersona").addEventListener("click", function () { abrirFormularioPersonas(null)})
+document.getElementById('formPersona').addEventListener("submit", guardarPersona)
 iniciar()
